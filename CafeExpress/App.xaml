@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CafeExpress.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="ColorPrimario">#5D4037</Color>
+            <Color x:Key="ColorAcento">#FF8F00</Color>
+            <Color x:Key="ColorFondo">#FFF8F0</Color>
+
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorPrimario}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="HeightRequest" Value="46" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CafeExpress.ViewModels"
+             x:Class="CafeExpress.Views.MenuPage"
+             Title="Menú de productos"
+             BackgroundColor="{StaticResource ColorFondo}">
+
+    <ContentPage.BindingContext>
+        <vm:MenuViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="*,Auto,Auto,Auto" Padding="16">
+
+        <!-- Catálogo de productos -->
+        <ListView Grid.Row="0"
+                  ItemsSource="{Binding Productos}"
+                  HasUnevenRows="True"
+                  SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid ColumnDefinitions="*,Auto" Padding="8">
+                            <StackLayout Grid.Column="0" Spacing="2">
+                                <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="16" />
+                                <Label Text="{Binding Descripcion}" FontSize="12" TextColor="Gray" />
+                                <Label Text="{Binding PrecioTexto}" FontSize="14"
+                                       TextColor="{StaticResource ColorAcento}" />
+                            </StackLayout>
+                            <Button Grid.Column="1" Text="Agregar" WidthRequest="90"
+                                    VerticalOptions="Center"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MenuViewModel}}, Path=AgregarCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Carrito -->
+        <StackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding Carrito}" Spacing="2">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Resumen}" FontSize="13" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+
+        <Label Grid.Row="2"
+               Text="{Binding TotalTexto}"
+               FontSize="18" FontAttributes="Bold"
+               TextColor="{StaticResource ColorPrimario}"
+               Margin="0,8,0,8" />
+
+        <Button Grid.Row="3"
+                Text="Confirmar pedido"
+                BackgroundColor="{StaticResource ColorAcento}"
+                Command="{Binding ConfirmarPedidoCommand}"
+                IsVisible="{Binding PuedeCrearPedido}" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CafeExpress.ViewModels"
+             x:Class="CafeExpress.Views.AdminProductosPage"
+             Title="Administrar productos"
+             BackgroundColor="{StaticResource ColorFondo}">
+
+    <ContentPage.BindingContext>
+        <vm:AdminProductosViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="*,Auto" Padding="16">
+
+        <!-- Lista de productos existentes -->
+        <ListView Grid.Row="0"
+                  ItemsSource="{Binding Productos}"
+                  SelectedItem="{Binding Seleccionado, Mode=TwoWay}"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="8" Spacing="2">
+                            <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                            <Label Text="{Binding PrecioTexto}" FontSize="12" TextColor="Gray" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Formulario de alta / edición -->
+        <StackLayout Grid.Row="1" Spacing="8" Margin="0,10,0,0">
+            <Entry Placeholder="Nombre del producto" Text="{Binding Nombre}" />
+            <Entry Placeholder="Descripción" Text="{Binding Descripcion}" />
+            <Entry Placeholder="Categoría" Text="{Binding Categoria}" />
+            <Entry Placeholder="Precio" Keyboard="Numeric" Text="{Binding Precio}" />
+
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                <Button Grid.Column="0" Text="Nuevo"
+                        BackgroundColor="#8D6E63"
+                        Command="{Binding NuevoCommand}" />
+                <Button Grid.Column="1" Text="Guardar"
+                        Command="{Binding GuardarCommand}" />
+                <Button Grid.Column="2" Text="Eliminar"
+                        BackgroundColor="#B71C1C"
+                        Command="{Binding EliminarCommand}" />
+            </Grid>
+        </StackLayout>
+    </Grid>
+</ContentPage>

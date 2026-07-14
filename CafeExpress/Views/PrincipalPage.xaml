@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CafeExpress.ViewModels"
+             x:Class="CafeExpress.Views.PrincipalPage"
+             Title="Menú principal"
+             BackgroundColor="{StaticResource ColorFondo}">
+
+    <ContentPage.BindingContext>
+        <vm:PrincipalViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="30" Spacing="16" VerticalOptions="Center">
+        <Label Text="{Binding Bienvenida}"
+               FontSize="18" FontAttributes="Bold"
+               TextColor="{StaticResource ColorPrimario}"
+               HorizontalOptions="Center" />
+
+        <!-- Control de acceso en la interfaz: cada opción se muestra
+             únicamente si la matriz RBAC lo permite (IsVisible). -->
+        <Button Text="Ver menú"
+                Command="{Binding IrAMenuCommand}"
+                IsVisible="{Binding PuedeVerMenu}" />
+
+        <Button Text="Pedidos"
+                Command="{Binding IrAPedidosCommand}"
+                IsVisible="{Binding PuedeVerPedidos}" />
+
+        <Button Text="Administrar productos"
+                Command="{Binding IrAProductosCommand}"
+                IsVisible="{Binding PuedeGestionarProductos}" />
+
+        <Button Text="Cerrar sesión"
+                BackgroundColor="#8D6E63"
+                Command="{Binding CerrarSesionCommand}" />
+    </StackLayout>
+</ContentPage>

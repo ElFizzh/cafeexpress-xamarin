@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CafeExpress.ViewModels"
+             x:Class="CafeExpress.Views.LoginPage"
+             Title="CaféExpress"
+             BackgroundColor="{StaticResource ColorFondo}">
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="30" Spacing="14" VerticalOptions="Center">
+        <Label Text="CaféExpress"
+               FontSize="34" FontAttributes="Bold"
+               TextColor="{StaticResource ColorPrimario}"
+               HorizontalOptions="Center" />
+        <Label Text="Cafetería Aroma — Gestión de pedidos"
+               FontSize="14" TextColor="Gray"
+               HorizontalOptions="Center" />
+
+        <Entry Placeholder="Usuario"
+               Text="{Binding NombreUsuario}" />
+        <Entry Placeholder="Contraseña"
+               IsPassword="True"
+               Text="{Binding Contrasena}" />
+
+        <Label Text="{Binding MensajeError}"
+               TextColor="Red" FontSize="13"
+               HorizontalOptions="Center" />
+
+        <Button Text="Iniciar sesión"
+                Command="{Binding IniciarSesionCommand}" />
+    </StackLayout>
+</ContentPage>
