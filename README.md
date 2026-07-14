@@ -22,13 +22,6 @@ CafeExpress/
 | Empleado      | empleado  | empleado123  |
 | Cliente       | cliente   | cliente123   |
 
-## Cómo compilar
-
-1. Instalar **Visual Studio 2022 Community** con la carga de trabajo *"Desarrollo móvil con .NET"* (Xamarin).
-2. Crear un proyecto nuevo: **Aplicación Xamarin.Forms** → nombre `CafeExpress` → plantilla *En blanco* → plataforma Android.
-3. En el proyecto compartido `CafeExpress`, reemplazar `App.xaml` / `App.xaml.cs` y copiar las carpetas `Models`, `Services`, `ViewModels` y `Views` de este repositorio.
-4. Establecer `CafeExpress.Android` como proyecto de inicio y ejecutar (F5) en un emulador o dispositivo físico con Android 8.0+.
-
 ## Seguridad
 
 - Contraseñas almacenadas con hash **SHA-256** (nunca en texto plano).
